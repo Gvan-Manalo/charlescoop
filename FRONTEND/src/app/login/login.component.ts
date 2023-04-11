@@ -4,13 +4,14 @@ import { formState, formState2, formState3, formState4, formState5, slideleft, s
 import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import {BackendService} from '../services/backend.service';
 import {TokenService} from '../services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   animations: [formState, formState2, formState3, formState4, formState5, slideleft, slideright],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class LoginComponent implements OnInit, OnDestroy  {
 
@@ -36,7 +37,7 @@ export class LoginComponent implements OnInit, OnDestroy  {
   
   submitted:boolean = false;
 
-  constructor(@Inject(DOCUMENT) private _document: any , private backend:BackendService, private token:TokenService){}
+  constructor(@Inject(DOCUMENT) private _document: any , private backend:BackendService, private token:TokenService, private route:Router){}
 
 
   loginForm = new FormGroup({
@@ -70,13 +71,18 @@ export class LoginComponent implements OnInit, OnDestroy  {
     this._document.body.classList.add('body');
   }
   public error = null;
+
   submitLogin(){
-    //console.log(this.form);
+    
     return this.backend.login(this.form).subscribe(
-      data=>this.handleResponse(data),
-      error=>this.handleError(error)
-    );
-  }
+   (res:any) => { 
+    console.log('res',res);
+    if(res['access_token']!=false){
+      this.route.navigateByUrl('/admin/admin-home');
+        }
+      })
+    }
+
   handleResponse(data:any){
     console.log(data.access_token);
   }

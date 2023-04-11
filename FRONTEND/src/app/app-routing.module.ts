@@ -13,45 +13,79 @@ import { AccountingComponent } from './admin/accounting/accounting.component';
 import { MembersComponent } from './admin/members/members.component';
 import { InventoryComponent } from './admin/inventory/inventory.component';
 import { BodyComponent } from './admin/body/body.component';
-const routes: Routes = [{
-  path: 'login', 
-  component: LoginComponent
-},
-{
-  path: 'register', 
-  component: RegisterComponent
-},
-{
-  path: '',
-  redirectTo: 'login',
-  pathMatch: 'full'
-},
-{
-  path: 'forgot-pass', 
-  component: ForgotPassComponent
-},
-{
-  path: 'verify-account', 
-  component: VerifyAccountComponent
-},
-{
-  path: 'check-email', 
-  component: CheckEmailComponent
-},
+import { SadminHomeComponent } from './super-admin/sadmin-home/sadmin-home.component';
+import { ActivityLogsComponent } from './super-admin/activity-logs/activity-logs.component';
+import { SadminSettingsComponent } from './super-admin/sadmin-settings/sadmin-settings.component';
+import { JournalEntryComponent } from './admin/accounting/journal-entry/journal-entry.component';
+import { AddInvoiceComponent } from './admin/members/add-invoice/add-invoice.component';
+import { AddMembersComponent } from './admin/members/add-members/add-members.component';
+import { AddPaymentComponent } from './admin/members/add-payment/add-payment.component';
 
-{
-  path: 'change-pass', 
-  component: ChangePassComponent
-},
-
-{
-  path: 'pass-done', 
-  component: PassDoneComponent
-},
-{
-  path: 'adminHome', 
-  component: AdminHomeComponent
-},
+const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: 'forgot-pass',
+    component: ForgotPassComponent,
+  },
+  {
+    path: 'verify-account',
+    component: VerifyAccountComponent,
+  },
+  {
+    path: 'check-email',
+    component: CheckEmailComponent,
+  },
+  {
+    path: 'change-pass',
+    component: ChangePassComponent,
+  },
+  {
+    path: 'pass-done',
+    component: PassDoneComponent,
+  },
+  {
+    path: 'pass-done',
+    component: PassDoneComponent,
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    children : [
+      {path: '', redirectTo: 'admin-home', pathMatch: 'full'},
+      {path: 'admin-home', component: AdminHomeComponent},
+      {path: 'accounting', component: AccountingComponent},
+      {path: 'accounting/journal-entry', component: JournalEntryComponent},
+      {path: 'members', component: MembersComponent},
+      {path: 'members/add-invoice', component: AddInvoiceComponent},
+      {path: 'members/add-members', component: AddMembersComponent},
+      {path: 'members/add-payment', component: AddPaymentComponent},
+      {path: 'inventory', component: InventoryComponent},
+      {path: 'body', component: BodyComponent},
+    ]
+  },
+  {
+    path: 'super-admin',
+    component: AdminComponent,
+    children : [
+      {path: '', redirectTo: 'sadmin-home', pathMatch: 'full'},
+      {path: 'sadmin-home', component: SadminHomeComponent},
+      {path: 'activity-logs', component: ActivityLogsComponent},
+      {path: 'sadmin-settings', component: SadminSettingsComponent},
+      {path: 'body', component: BodyComponent},
+    ]
+  },
 ];
 
 @NgModule({

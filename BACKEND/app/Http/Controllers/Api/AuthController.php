@@ -16,19 +16,27 @@ class AuthController extends Controller {
      * @return type
      */
     
-    public function login(Request $request){
-        $input = $request->all();
-         if(auth()->attempt(array('email'=>$input['email'],
-         'password'=>$input['password']))){
-            if(auth()->user()->role_id==2){
-                return redirect()->route('super.home');
-            }else if(auth()->user()->role_id==1){
-                return redirect()->route('home');
-            }
-         }else{
-            return redirect()->route('login')->with('error','Invalid Credentials');
-         }
-        } 
+    public function login(){
+        $credentials = request(['email','password']);
+
+        (!$token=auth()->attempt($credentials));{
+        
+        }
+        return $this->respondWithToken($token);
+        
+        // $input = $request->all();
+        //  if(auth()->attempt(array('email'=>$input['email'],
+        //  'password'=>$input['password']))){
+        //     if(auth()->user()->role_id==2){
+        //         return redirect()->route('super.home');
+        //     }else if(auth()->user()->role_id==1){
+        //         return redirect()->route('home');
+        //     }
+        //  }else{
+        //     return redirect()->route('login')->with('error','Invalid Credentials');
+        //  }
+       } 
+
     
 
 
@@ -57,7 +65,6 @@ class AuthController extends Controller {
      */
     public function logout() {
         auth()->logout();
-
         return response()->json(['message' => 'Successfully logged out']);
     }
     
