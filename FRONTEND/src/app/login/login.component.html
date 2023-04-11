@@ -1,0 +1,53 @@
+<head><title>Login</title></head>
+<main>
+    <div class="box">
+        <div class="inner-box">
+            <div class="form-wrap" >    
+                <form #loginForms="ngForm" (ngSubmit)="submitLogin()" [formGroup]="loginForm" class="login-form"  *ngIf="isDisplayed" @slideright>
+                    <div class="wah-logo">
+                        <img src="assets/image/coop-logo.png" alt="WAH Logo">
+                        <p>WAHIE <br> Cooperative</p>
+                    </div>
+
+                    <div class="heading">
+                        <h1>Welcome</h1>
+                        <p>Enter details to login to the admin panel</p>
+                    </div>
+                
+                    <div class="txt-field">
+                            <div class="txt-wrap">
+                                <input type="email" name="email" formControlName="email" class="input-field" id="log-email" placeholder="Email" 
+                                [ngClass]="{error : getControl('email')?.errors && getControl('email')}"  [(ngModel)]="form.email"><br>
+                            </div>
+
+                            <div class="txt-wrap">
+                                <input [type]="changetype?'password':'text'" name="password" formControlName="password"  [(ngModel)]="form.password" class="input-field" id="log-pass" placeholder="Password" 
+                                [ngClass]="{error : getControl('password')?.errors && getControl('password')}">
+                                <span class="eye" (click)="viewpass()"><i [ngClass]="visible?'ti ti-eye-closed':'ti ti-eye'"></i></span>
+                            
+                            </div>
+                            <div>
+                                <div class="text-danger" *ngIf="submitted">
+                                    <small *ngIf="getControl('email')?.errors?.['required'] || getControl('password')?.errors?.['required']">Email and Password required</small>
+                                </div>
+                            </div>
+        
+                            <a href="forgot-pass" class="forgot-pass">Forgot Password?</a><br>
+
+                            <button type="submit" class="submit">Login</button>
+                            
+
+                            <p class="account">
+                                Don't have an account? <a  onclick="clearInputField()" href="register">Sign Up</a>
+                            </p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- VECTOR BACKGROUND -->
+            <div class="login-vector" *ngIf="isDisplayed" @slideleft >
+                <img src="assets/image/login.png" class="login " > 
+            </div>
+        </div>
+    </div>
+</main>
