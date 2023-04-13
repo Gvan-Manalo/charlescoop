@@ -32,6 +32,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StrengthMeterModule } from "ngx-strength-meter";
 import { HttpClientModule } from '@angular/common/http';
+import { PrivateComponent } from './private/private/private.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { HttpClientModule } from '@angular/common/http';
     ChangePassComponent,
     PassDoneComponent,
     SadminChpassComponent,
-    SadminPassdoneComponent
+    SadminPassdoneComponent,
+    PrivateComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -71,7 +75,7 @@ import { HttpClientModule } from '@angular/common/http';
     StrengthMeterModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

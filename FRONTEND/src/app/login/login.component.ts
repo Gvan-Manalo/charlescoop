@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators, FormBuilder, AbstractControl } from
 import {BackendService} from '../services/backend.service';
 import {TokenService} from '../services/token.service';
 import { Router } from '@angular/router';
+import { AuthGuardService } from '../services/auth-guard.service';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.Emulated,
 })
 export class LoginComponent implements OnInit, OnDestroy  {
+
 
   isDisplayed: boolean = true;
   toggleDiv(){
@@ -37,7 +39,8 @@ export class LoginComponent implements OnInit, OnDestroy  {
   
   submitted:boolean = false;
 
-  constructor(@Inject(DOCUMENT) private _document: any , private backend:BackendService, private token:TokenService, private route:Router){}
+  constructor(@Inject(DOCUMENT) private _document: any , private backend:BackendService,
+   private token:TokenService, private route:Router , private Auth:AuthGuardService){}
 
 
   loginForm = new FormGroup({
@@ -69,22 +72,24 @@ export class LoginComponent implements OnInit, OnDestroy  {
 
   ngOnDestroy() {
     this._document.body.classList.add('body');
+    
   }
   public error = null;
 
   submitLogin(){
     
-    return this.backend.login(this.form).subscribe(
-   (res:any) => { 
-    console.log('res',res);
-    if(res['access_token']!=false){
-      this.route.navigateByUrl('/admin/admin-home');
-        }
-      })
+    return this.backend.login(this.form).subscribe( 
+    data=>this.handleResponse(data),
+    error=>this.handleError(error)
+  )
     }
-
+    get f() { return this.loginForm.controls; } 
   handleResponse(data:any){
-    console.log(data.access_token);
+    console.log(data);
+    sessionStorage.setItem('email', 'awit');
+    this.token.handle(data.access_token);
+    this.Auth.changeStatus(true);
+    this.route.navigateByUrl('admin/admin-home');
   }
   handleError(error:any){
     this.error = error.error.error;

@@ -20,15 +20,22 @@ import { JournalEntryComponent } from './admin/accounting/journal-entry/journal-
 import { AddInvoiceComponent } from './admin/members/add-invoice/add-invoice.component';
 import { AddMembersComponent } from './admin/members/add-members/add-members.component';
 import { AddPaymentComponent } from './admin/members/add-payment/add-payment.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { SuperAdminComponent } from './super-admin/super-admin.component';
+import { LoggedInService } from './services/logged-in.service';
+import { NotLoggedInService } from './services/not-logged-in.service';
 
 const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    canActivate : [NotLoggedInService]
+
   },
   {
     path: 'register',
     component: RegisterComponent,
+    canActivate : [NotLoggedInService]
   },
   {
     path: '',
@@ -38,6 +45,7 @@ const routes: Routes = [
   {
     path: 'forgot-pass',
     component: ForgotPassComponent,
+    
   },
   {
     path: 'verify-account',
@@ -62,6 +70,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate : [LoggedInService],
     children : [
       {path: '', redirectTo: 'admin-home', pathMatch: 'full'},
       {path: 'admin-home', component: AdminHomeComponent},
@@ -77,7 +86,8 @@ const routes: Routes = [
   },
   {
     path: 'super-admin',
-    component: AdminComponent,
+    component: SuperAdminComponent,
+    canActivate : [LoggedInService],
     children : [
       {path: '', redirectTo: 'sadmin-home', pathMatch: 'full'},
       {path: 'sadmin-home', component: SadminHomeComponent},
@@ -90,6 +100,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuardService]
 })
 export class AppRoutingModule { }
