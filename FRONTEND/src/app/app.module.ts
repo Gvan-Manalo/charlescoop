@@ -34,6 +34,8 @@ import { StrengthMeterModule } from "ngx-strength-meter";
 import { HttpClientModule } from '@angular/common/http';
 import { PrivateComponent } from './private/private/private.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { NotVerifiedComponent } from './not-verified/not-verified.component';
+import { DisableAccountComponent } from './disable-account/disable-account.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +66,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     SadminChpassComponent,
     SadminPassdoneComponent,
     PrivateComponent,
+    NotVerifiedComponent,
+    DisableAccountComponent,
    
   ],
   imports: [

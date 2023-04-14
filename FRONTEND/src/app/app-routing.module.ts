@@ -24,6 +24,8 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { SuperAdminComponent } from './super-admin/super-admin.component';
 import { LoggedInService } from './services/logged-in.service';
 import { NotLoggedInService } from './services/not-logged-in.service';
+import { NotVerifiedComponent } from './not-verified/not-verified.component';
+import { DisableAccountComponent } from './disable-account/disable-account.component';
 
 const routes: Routes = [
   {
@@ -66,6 +68,14 @@ const routes: Routes = [
   {
     path: 'pass-done',
     component: PassDoneComponent,
+  },
+  {
+    path: 'not-verified',
+    component: NotVerifiedComponent,
+  },
+  {
+    path: 'disable-account',
+    component: DisableAccountComponent,
   },
   {
     path: 'admin',

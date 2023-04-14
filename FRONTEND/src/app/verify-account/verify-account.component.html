@@ -26,15 +26,12 @@
                     </div>
                         <button (click)="show(1)" class="submit">Confirm</button>
 
-                        <a href="register" class="back">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" 
-                            width="25" height="25" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" 
-                            fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M5 12l14 0"></path>
-                            <path d="M5 12l6 6"></path>
-                            <path d="M5 12l6 -6"></path>
-                        </svg>Go Back</a>
+                        <div class="account">
+                            <div style="text-align:center"></div>
+                                <span class="dot1">1</span>
+                                <span class="dot2">2</span>
+
+                        </div>
                     
                 </form>
             </div>
@@ -53,7 +50,7 @@
         <div class="otp-modal" *ngIf="showModal === 1">
             <div class="otp-content">
                 <div class="otp-header">
-                    <span class="check-icon"><i class="ti ti-circle-check-filled"></i></span>
+                    <div class="check-icon"><i class="ti ti-circle-check-filled"></i></div>
                 </div>
                 <div class="otp-body">
                     <h1>Email Verified!</h1>

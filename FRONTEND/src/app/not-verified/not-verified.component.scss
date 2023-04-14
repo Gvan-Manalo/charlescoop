@@ -3,10 +3,6 @@
     margin: 0;
     box-sizing: border-box;
   }
-
-  body, input, button{
-    font-family: "Poppins", sans-serif;
-}
   
   main{
     cursor: context-menu;
@@ -14,10 +10,11 @@
     min-height: 100vh;
     overflow: hidden;
     background-color: #3F0F88;
-    padding: 2rem;
+    padding: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: "Poppins", sans-serif;
   }
   
   .box{
@@ -41,27 +38,23 @@
   
   .form-wrap{
     position: absolute;
-    height: 100%;
+    height: 95%;
     width: 45%;
     top: 0;
     left: 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    transition: 0.8s ease-in-out;
   }
   
-  .otp-vector{
+  .Nverified-vector{
     position: absolute;
     height: 100%;
     width: 55%;
     left: 45%;
     top: 0;
     background-color: #0099FF;
-    border-radius: 2rem;
+    border-radius: 25px;
   }
   
-  .otp-vector img{
+  .Nverified-vector img{
     width: 100%;
     height: 100%;
   }
@@ -70,7 +63,7 @@
     max-width: 310px;
     width: 100%;
     margin: 0 auto;
-    height: 100%;
+    height: 30rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -79,11 +72,12 @@
   .wah-logo{
     display: flex;
     align-items: center;
-    margin-top: 0%;
-    transform: translate(-3.5%, -10%);
+    margin-top: 5px;
+    transform: translate(-2.5%, -10%);
   }
   
   .wah-logo p{
+
     color: #3F0F88;
     font-size: .9rem;
     line-height: 100%;
@@ -93,11 +87,13 @@
   
   .wah-logo img{
     width: 50px;
-    margin: 0.1rem;
+    margin: -0.1rem;
   }
   
+
+  
   .heading h1{
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 1000;
     color: #151111;
     letter-spacing: -0.5px;
@@ -105,60 +101,38 @@
   
   .heading p{
     color: #707070;
-    font-size: .96rem;
-    display: inline;
+    font-size: .80rem;
   }
   
-  .txt-field{
+  .txt-wrap{
     position: relative;
-    height: 30px;
-    margin-bottom: 1rem;
+    height: 10px;
+    margin-bottom: 10.5rem;
+    text-align: center;
   }
   
-  .txt-wrap h5{
-    color: #3F0F88;
-  }
   
-  .input-field{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    outline-color: #3F0F88;
-    border: 2px solid #ccc;
-    border-radius: 0.6rem;
-    padding: 20px;
-  }
-  
-  .resend-code{
-    cursor: pointer;
-    font-size: 0.8rem;
-    color: #3F0F88;
-    text-decoration: none;
-    padding-left: 14.1rem;
-  }
-  
-  .resend-code:hover{
-    opacity: 80%;
-  }
-  
-  .submit{
+  .reset{
+
+    text-align: center;
     display: inline-block;
     width: 100%;
     height: 43px;
     background-color: #3F0F88;
     color: #fff;
     border: none;
-    cursor: pointer;
     border-radius: 0.6rem;
-    font-size: 0.9rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    transition: 0.3s;
+    font-size: 1.1rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    padding-top: .5rem;
+    text-decoration: none;
   }
   
-  .submit:hover{
+  .reset:hover{
     opacity: 80%;
   }
+  
   .account{
 
     color: #707070;
@@ -181,13 +155,12 @@
   
     .dot1 {
       margin-right: 5%;
-    
-    }
-    .dot2 {
-      margin-right: 5%;
       background-color: #3F0F88;
       color: #fff;
       border: #3F0F88;
+    }
+    .dot2 {
+      margin-right: 5%;
     }
     .dot3 {
       margin-right: 5%;
@@ -200,77 +173,37 @@
     text-decoration: none;
     cursor:context-menu;
   }
-  
-  /**OTP MODAL**/
-  
-  .check-icon{
-    content: '\f704';
-    font-size: 6rem;
-    color: #3F0F88;
-  }
-  
-  .otp-modal{
-    position: fixed;
-    background: #000000bf;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-  
-  .otp-content{
-    background: #fff;
-    width: 50%;
-    margin: 0 auto;
-    border-radius: 1rem;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(1);
-    text-align: center;
-    padding: 0 30px 30px;
-    transition: transform 0.4s, top 0.4s;
-    width: 400px;
-  }
-  
-  .otp-header{
-    padding: 20px;
-    color: #fff;
-  }
-  
-  .otp-body h1{
-    font-size: 1.8rem;
-  }
-  
-  .otp-body p{
-    color: #707070
-  }
-  
-  .otp-footer .backbtn{
-    width: 80%;
-    height: 43px;
-    background-color: #3F0F88;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 0.6rem;
+
+  .back{
+    display:flex;
+
+    color: #707070;
     font-size: 0.9rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    align-items: center;
+    font-weight: 500;
     transition: 0.3s;
+    cursor: pointer;
+    opacity: 80%;
+    margin-left: 30%;
+  }
+  
+  .back{
+    text-align: center;
     text-decoration: none;
   }
   
-  a:hover{
-    text-decoration: none;
+  .back:hover{
+    opacity: 60%;
   }
-  
   @media (max-width: 850px) {
-  
     .box {
       height: auto;
       max-width: 550px;
       overflow: hidden;
+    }
+  
+    h1, p{
+      text-align: center;
     }
   
     .inner-box {
@@ -287,6 +220,12 @@
       height: auto;
     }
   
+    .reg-wrap {
+      position: revert;
+      width: 100%;
+      height: auto;
+    }
+  
     form {
       max-width: revert;
       padding: 1.5rem 2.5rem 2rem;
@@ -297,20 +236,36 @@
       margin: 2rem 0;
     }
   
-    .otp-vector {
+    form.sign-up-form {
+        transform: translateX(100%);
+      }
+    
+      main.sign-up-mode form.sign-in-form {
+        transform: translateX(-100%);
+      }
+    
+      main.sign-up-mode form.sign-up-form {
+        transform: translateX(0%);
+      }
+    
+    .Nverified-vector {
       position: revert;
       height: auto;
       width: 0%;
-      padding: .2rem .1rem;
+      padding: .5rem .5rem;
       display: flex;
+    }
+  
+    .images-wrapper {
+      display: none;
     }
   
     .text-slider {
       width: 100%;
     }
   }
-  
-  @media (max-width: 830px) {
+    
+  @media (max-width: 530px) {
     main {
       padding: 1rem;
     }
@@ -323,16 +278,14 @@
       padding: 1rem;
     }
   
-    .otp-vector {
-      position: revert;
-      height: auto;
-      width: 0%;
-      padding: .2rem .1rem;
-      display: flex;
+    .Nverified-vector {
+      padding: 1rem 1rem;
+      border-radius: 1.6rem;
+      visibility:hidden;
     }
   
     .txt-wrap {
-      margin-bottom: 1rem;
+      margin-bottom: 3rem;
     }
   
     .text-group h2 {
@@ -343,3 +296,4 @@
       padding: 1rem 2rem 1.5rem;
     }
   }
+    
