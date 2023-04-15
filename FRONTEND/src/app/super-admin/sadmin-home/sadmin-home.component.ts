@@ -1,12 +1,16 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-sadmin-home',
   templateUrl: './sadmin-home.component.html',
   styleUrls: ['./sadmin-home.component.scss']
 })
 export class SadminHomeComponent implements OnInit{
+  /* Switch declaration */
+  selected: boolean = false;
+
 constructor(private http: HttpClient){
   this.showUsers();
 }
@@ -19,6 +23,8 @@ constructor(private http: HttpClient){
   email: string = "";
   status: number = 0;
 
+
+  
   ngOnInit(): void {
     
   }
