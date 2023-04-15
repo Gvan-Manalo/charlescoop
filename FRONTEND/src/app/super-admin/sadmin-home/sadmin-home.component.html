@@ -1,1 +1,24 @@
-<p>sadmin-home works!</p>
+<h1>Users</h1>
+<table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userAccounts">
+        <div  *ngIf="user.role_id==1">    
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+            [[[[[[switch]]]]]]
+         </td>
+      </div>
+    </tr>
+
+
+    </tbody>
+  </table>
+  

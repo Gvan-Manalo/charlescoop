@@ -89,29 +89,28 @@ export class LoginComponent implements OnInit, OnDestroy  {
     get f() { return this.loginForm.controls; } 
 
   handleResponse(user:any){
-    console.log(user.user);
+    console.log(user.access_token);
     localStorage.setItem('userData', JSON.stringify(user.user))
     this.token.handle(user.access_token);
     this.Auth.changeStatus(true);
 
     //admin
     if(user.user['role_id']==1){
-      
        //otpinput
       if(user.user['code']!=0){
         this.route.navigateByUrl('admin/admin-home');//code not input
       }
       else if(user.user['code']==0){
-       
-            if(user.user['status']==2){
-              this.route.navigateByUrl('not-verified');//not verified
-            }
-            else if(user.user['status']==1){
-              this.route.navigateByUrl('admin/admin-home');//verified
-            } 
-            else if(user.user['status']==0){
-              this.route.navigateByUrl('disable-account');//disabled
-            }
+        //verified
+          if(user.user['status']==2){
+            this.route.navigateByUrl('not-verified');//not verified
+          }
+          else if(user.user['status']==1){
+            this.route.navigateByUrl('admin/admin-home');//verified
+          } 
+          else if(user.user['status']==0){
+            this.route.navigateByUrl('disable-account');//disabled
+          }
       }
 
     }

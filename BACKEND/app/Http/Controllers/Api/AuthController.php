@@ -23,18 +23,7 @@ class AuthController extends Controller {
         
         }
         return $this->respondWithToken($token);
-        
-        // $input = $request->all();
-        //  if(auth()->attempt(array('email'=>$input['email'],
-        //  'password'=>$input['password']))){
-        //     if(auth()->user()->role_id==2){
-        //         return redirect()->route('super.home');
-        //     }else if(auth()->user()->role_id==1){
-        //         return redirect()->route('home');
-        //     }
-        //  }else{
-        //     return redirect()->route('login')->with('error','Invalid Credentials');
-        //  }
+
        } 
 
     
@@ -73,6 +62,7 @@ class AuthController extends Controller {
      *
      * @return \Illuminate\Http\JsonResponse
      */
+ 
     public function refresh()
     {
         return $this->respondWithToken(auth()->refresh());
