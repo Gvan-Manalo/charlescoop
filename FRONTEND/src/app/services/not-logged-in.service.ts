@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
 })
 export class NotLoggedInService {
 canActivate(route:ActivatedRouteSnapshot,state:RouterStateSnapshot):boolean | Observable<boolean>{
- this.backPage.back();
+
   return !this.token.loggedIn();
 
 }

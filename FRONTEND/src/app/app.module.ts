@@ -34,8 +34,12 @@ import { StrengthMeterModule } from "ngx-strength-meter";
 import { HttpClientModule } from '@angular/common/http';
 import { PrivateComponent } from './private/private/private.component';
 import { AuthGuardService } from './services/auth-guard.service';
+<<<<<<< Updated upstream
 import { NotVerifiedComponent } from './not-verified/not-verified.component';
 import { DisableAccountComponent } from './disable-account/disable-account.component';
+=======
+import { SadminBodyComponent } from './super-admin/sadmin-body/sadmin-body.component';
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -66,8 +70,12 @@ import { DisableAccountComponent } from './disable-account/disable-account.compo
     SadminChpassComponent,
     SadminPassdoneComponent,
     PrivateComponent,
+<<<<<<< Updated upstream
     NotVerifiedComponent,
     DisableAccountComponent,
+=======
+    SadminBodyComponent,
+>>>>>>> Stashed changes
    
   ],
   imports: [

@@ -6,6 +6,7 @@ import {BackendService} from '../services/backend.service';
 import {TokenService} from '../services/token.service';
 import { Router } from '@angular/router';
 import { AuthGuardService } from '../services/auth-guard.service';
+import { CredentialsService } from '../services/credentials.service';
 
 @Component({
   selector: 'app-login',
@@ -40,7 +41,8 @@ export class LoginComponent implements OnInit, OnDestroy  {
   submitted:boolean = false;
 
   constructor(@Inject(DOCUMENT) private _document: any , private backend:BackendService,
-   private token:TokenService, private route:Router , private Auth:AuthGuardService){}
+   private token:TokenService, private route:Router , private Auth:AuthGuardService , private cred:CredentialsService){
+   }
 
 
   loginForm = new FormGroup({
@@ -77,21 +79,29 @@ export class LoginComponent implements OnInit, OnDestroy  {
   public error = null;
 
   submitLogin(){
-    
+
+
     return this.backend.login(this.form).subscribe( 
     data=>this.handleResponse(data),
-    error=>this.handleError(error)
   )
     }
     get f() { return this.loginForm.controls; } 
-  handleResponse(data:any){
-    console.log(data);
-    sessionStorage.setItem('email', 'awit');
-    this.token.handle(data.access_token);
+
+  handleResponse(user:any){
+    console.log(user.role_id);
+    this.cred.handle(user.name);
+    this.token.handle(user.access_token);
     this.Auth.changeStatus(true);
-    this.route.navigateByUrl('admin/admin-home');
+    if(user.role_id==1){
+      this.route.navigateByUrl('admin/admin-home');
+    }else  if(user.role_id==2){
+      this.route.navigateByUrl('super-admin/sadmin-home');
+    }
+   
+ 
   }
   handleError(error:any){
     this.error = error.error.error;
   }
+
 }

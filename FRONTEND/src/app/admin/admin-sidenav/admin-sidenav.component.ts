@@ -4,6 +4,7 @@ import { adminNavData } from './admin-navdata';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token.service';
+import { CredentialsService } from 'src/app/services/credentials.service';
 
 interface SideNavToggle {
   screenWidth: number;
@@ -56,17 +57,19 @@ export class AdminSidenavComponent implements OnInit {
     }
   }
    
-
+ email:any
+ 
   ngOnInit(): void {
     this.screenWidth = window.innerWidth;
-    var data = sessionStorage.getItem('email');
-    console.log('email',data) 
-    this.auth.authStatus.subscribe(
-      value=>{
-        this.loggedIn = value;
-      }
+  //  var data = this.creds.get();
+  //   console.log('email', data) 
+  //   this.email=sessionStorage.getItem('email')
+    // this.auth.authStatus.subscribe(
+    //   value=>{
+    //     this.loggedIn = value;
+    //   }
     
-    )
+    //)
   }
 
   toggleCollapse(): void {
@@ -86,14 +89,17 @@ export class AdminSidenavComponent implements OnInit {
   }
   public loggedIn:boolean = false;
 
- constructor(private auth:AuthGuardService,private router:Router,private token:TokenService) {}
+ constructor(private auth:AuthGuardService,private router:Router,private token:TokenService, private creds:CredentialsService) {}
 
  logout(event:MouseEvent){
   event.preventDefault();
   this.token.remove();
   this.auth.changeStatus(false);
+  this.creds.remove();
   this.router.navigateByUrl('/login');
  }
   
- 
+ userName(){
+  return sessionStorage.getItem('name');
+}
 }
