@@ -6,7 +6,7 @@ import {BackendService} from '../services/backend.service';
 import {TokenService} from '../services/token.service';
 import { Router } from '@angular/router';
 import { AuthGuardService } from '../services/auth-guard.service';
-import { CredentialsService } from '../services/credentials.service';
+
 
 @Component({
   selector: 'app-login',
@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit, OnDestroy  {
   submitted:boolean = false;
 
   constructor(@Inject(DOCUMENT) private _document: any , private backend:BackendService,
-   private token:TokenService, private route:Router , private Auth:AuthGuardService , private cred:CredentialsService){
+   private token:TokenService, private route:Router , private Auth:AuthGuardService ){
+
    }
 
 
@@ -88,13 +89,34 @@ export class LoginComponent implements OnInit, OnDestroy  {
     get f() { return this.loginForm.controls; } 
 
   handleResponse(user:any){
-    console.log(user.role_id);
-    this.cred.handle(user.name);
+    console.log(user.user);
+    localStorage.setItem('userData', JSON.stringify(user.user))
     this.token.handle(user.access_token);
     this.Auth.changeStatus(true);
-    if(user.role_id==1){
-      this.route.navigateByUrl('admin/admin-home');
-    }else  if(user.role_id==2){
+
+    //admin
+    if(user.user['role_id']==1){
+      
+       //otpinput
+      if(user.user['code']!=0){
+        this.route.navigateByUrl('admin/admin-home');//code not input
+      }
+      else if(user.user['code']==0){
+       
+            if(user.user['status']==2){
+              this.route.navigateByUrl('not-verified');//not verified
+            }
+            else if(user.user['status']==1){
+              this.route.navigateByUrl('admin/admin-home');//verified
+            } 
+            else if(user.user['status']==0){
+              this.route.navigateByUrl('disable-account');//disabled
+            }
+      }
+
+    }
+    //superadmin
+    else if(user.user['role_id']==2){
       this.route.navigateByUrl('super-admin/sadmin-home');
     }
    

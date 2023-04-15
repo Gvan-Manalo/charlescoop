@@ -4,7 +4,7 @@ import { TokenService } from './token.service';
 import {BehaviorSubject} from 'rxjs/internal/BehaviorSubject';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
-import { CredentialsService } from './credentials.service';
+
 
 
 @Injectable()
@@ -22,7 +22,7 @@ export class AuthGuardService  {
 
   // }
   
-  constructor( private route:Router, private token:TokenService , private http: HttpClient, private cred:CredentialsService){}
+  constructor( private route:Router, private token:TokenService , private http: HttpClient){}
 
 
 

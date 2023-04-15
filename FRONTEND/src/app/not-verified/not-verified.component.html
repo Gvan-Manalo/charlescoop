@@ -13,7 +13,7 @@
                         <p>Please input OTP first.  </p>
                     </div>
                 
-                    <a [routerLink]="['/login']" class="back">
+                    <a [routerLink]="['/login']" (click)="logout($event)" class="back">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-left" 
                         width="25" height="25" viewBox="0 0 24 24" stroke-width="1" stroke="currentColor" 
                         fill="none" stroke-linecap="round" stroke-linejoin="round">

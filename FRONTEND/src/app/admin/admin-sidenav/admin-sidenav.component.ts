@@ -4,7 +4,7 @@ import { adminNavData } from './admin-navdata';
 import { AuthGuardService } from 'src/app/services/auth-guard.service';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token.service';
-import { CredentialsService } from 'src/app/services/credentials.service';
+
 
 interface SideNavToggle {
   screenWidth: number;
@@ -89,13 +89,12 @@ export class AdminSidenavComponent implements OnInit {
   }
   public loggedIn:boolean = false;
 
- constructor(private auth:AuthGuardService,private router:Router,private token:TokenService, private creds:CredentialsService) {}
+ constructor(private auth:AuthGuardService,private router:Router,private token:TokenService) {}
 
  logout(event:MouseEvent){
   event.preventDefault();
-  this.token.remove();
   this.auth.changeStatus(false);
-  this.creds.remove();
+  localStorage.clear();
   this.router.navigateByUrl('/login');
  }
   

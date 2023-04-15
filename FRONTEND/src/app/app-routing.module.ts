@@ -24,12 +24,9 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { SuperAdminComponent } from './super-admin/super-admin.component';
 import { LoggedInService } from './services/logged-in.service';
 import { NotLoggedInService } from './services/not-logged-in.service';
-<<<<<<< Updated upstream
-import { NotVerifiedComponent } from './not-verified/not-verified.component';
-import { DisableAccountComponent } from './disable-account/disable-account.component';
-=======
 import { SadminBodyComponent } from './super-admin/sadmin-body/sadmin-body.component';
->>>>>>> Stashed changes
+import { DisableAccountComponent } from './disable-account/disable-account.component';
+import { NotVerifiedComponent } from './not-verified/not-verified.component';
 
 const routes: Routes = [
   {
