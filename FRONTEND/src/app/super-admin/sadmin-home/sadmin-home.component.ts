@@ -45,4 +45,35 @@ constructor(private http: HttpClient){
     this.isChecked = !this.isChecked;
   }
 
+  activateUser(data:any) {
+    this.id = data.id,
+    this.status = 1,
+    this.name = data.name,
+    this.email = data.email
+    this.activated();
+  }
+
+  activated(){
+    let updateStatus = {
+     'status': 1,
+     'id' : this.id,
+     'name': this.name,
+     'email': this.email
+    }
+    this.http.put('http://127.0.0.1:8000/api/users' + '/' + this.id, updateStatus).subscribe(
+      (res:any)=>{
+        console.log(res);
+        this.showUsers();
+        this.id = '';
+        this.status = 0;
+        this.name = '';
+        this.email = '';
+
+       }
+    )
+  }
+
+
+
+
 }

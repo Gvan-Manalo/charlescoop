@@ -9,14 +9,25 @@
     </thead>
     <tbody>
       <tr *ngFor="let user of userAccounts">
-        <div  *ngIf="user.role_id==1">    
+        <div  *ngIf="user.role_id==1">  
+        <input type="hidden" value="{{ user.id }}" name="id">
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
+      
         <td>
-            [[[[[[switch]]]]]]
-
-            
-         </td>
+          <div *ngIf="user.status!=3">
+          <label class="switch-toggle">
+            <input type="checkbox" [(ngModel)]="selected">
+            <div class="slider"></div>
+          </label>
+        </div>
+          
+                <div *ngIf="user.status==3">
+                <button type="submit" (click)="activateUser(user)"  class="btn btn-success">
+                  <span>Activate</span>
+              </button>
+              </div>
+          </td>
       </div>
     </tr>
 
@@ -25,11 +36,7 @@
   </table>
 
   <!-- SWITCH-->
-  <label class="switch-toggle">
-    <input type="checkbox" [(ngModel)]="selected">
-    <div class="slider"></div>
-  </label>
-  
+
 
 
   

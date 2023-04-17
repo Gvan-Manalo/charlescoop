@@ -11,4 +11,10 @@ class userController extends Controller
    $users = User::all();
    return response()->json($users);
     }
+
+    public function activateUser(Request $request, $id){
+        $users = User::find($id);
+        $users->update($request->all());
+        return response()->json($users); 
+    }
 }
