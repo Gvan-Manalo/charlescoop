@@ -50,7 +50,7 @@ export class VerifyAccountComponent implements OnInit, OnDestroy{
         'id' : this.id
       }
       console.log(this.otp)
-      this.http.post('http://127.0.0.1:8000/api/users' + '/' + this.id, body).subscribe(
+      this.http.post('http://127.0.0.1:8000/api/users/updateOtp' + '/' + this.id, body).subscribe(
        (res:any)=>{
         console.log(res);
         if(res.code==0){
@@ -66,7 +66,7 @@ export class VerifyAccountComponent implements OnInit, OnDestroy{
         'id' : this.id
       }
       console.log(this.otp)
-      this.http.post('http://127.0.0.1:8000/api/users' + '/' + this.id, body).subscribe(
+      this.http.post('http://127.0.0.1:8000/api/users/resendOtp' + '/' + this.id, body).subscribe(
        (res:any)=>{
         console.log(res)
        })

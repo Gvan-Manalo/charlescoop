@@ -20,9 +20,9 @@ Route::post('register', [App\Http\Controllers\Api\AuthController::class, 'regist
 
 
 Route::get('/users', [App\Http\Controllers\userController::class, 'users']);
-Route::post('/users/{id}', [App\Http\Controllers\userController::class, 'submitOtp']);
+Route::post('/users/updateOtp/{id}', [App\Http\Controllers\userController::class, 'submitOtp']);
 Route::put('/users/{id}', [App\Http\Controllers\userController::class, 'activateUser']);
-Route::post('/users/{id}', [App\Http\Controllers\userController::class, 'resendOtp']);
+Route::post('/users/resendOtp/{id}', [App\Http\Controllers\userController::class, 'resendOtp']);
 
 
 
