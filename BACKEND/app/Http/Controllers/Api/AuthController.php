@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\MailOtp;
+use App\Models\EmailOtp;
+use Illuminate\Console\View\Components\Alert;
+use Illuminate\Support\Facades\Mail;
+
 
 class AuthController extends Controller {
 
@@ -38,20 +43,39 @@ class AuthController extends Controller {
             
         ]);
 
-    $code = rand(100000,999999);
-    $user = User::create([ 'name' => $request['name'],
-    'email' => $request['email'],
-    'password' => Hash::make($request['password']),
-    'code' => $code,]);
-    response()->json(['message' => "Success", 'user'=>$user,200]);
-   
-    }
+            $code = rand(100000,999999);
+
+            $user = User::create([ 
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => Hash::make($request['password']),
+            'code' => $code,
+            ]);
+
+            $email = $request['email'];
+            EmailOtp::create([
+            'user_email'=> $email,
+            'code' => $code
+             ]);
+            Mail::to($email)->send(new MailOtp($code,$email));
+
+            response()->json(['message' => "Success", 'user'=>$user,200]);
+
+            }
+
+
+            
+          
+        
+
 
     /**
      * user logout
      * 
      * @return type
      */
+
+
     public function logout() {
         auth()->logout();
         return response()->json(['message' => 'Successfully logged out']);

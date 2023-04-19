@@ -15,14 +15,14 @@
         <td>{{ user.email }}</td>
       
         <td>
-          <div *ngIf="user.status!=3">
+          <div *ngIf="user.status!=2">
           <label class="switch-toggle">
             <input type="checkbox" [(ngModel)]="selected">
             <div class="slider"></div>
           </label>
         </div>
           
-                <div *ngIf="user.status==3">
+                <div *ngIf="user.status==2">
                 <button type="submit" (click)="activateUser(user)"  class="btn btn-success">
                   <span>Activate</span>
               </button>

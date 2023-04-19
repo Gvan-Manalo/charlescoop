@@ -14,15 +14,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::post('login', [App\Http\Controllers\Api\AuthController::class, 'login']);
+
 Route::post('register', [App\Http\Controllers\Api\AuthController::class, 'register']);
 
 
 
-
-
-
-Route::put('/users/{id}', [App\Http\Controllers\userController::class, 'activateUser']);
 Route::get('/users', [App\Http\Controllers\userController::class, 'users']);
+Route::post('/users/{id}', [App\Http\Controllers\userController::class, 'submitOtp']);
+Route::put('/users/{id}', [App\Http\Controllers\userController::class, 'activateUser']);
+Route::post('/users/{id}', [App\Http\Controllers\userController::class, 'resendOtp']);
+
 
 
 

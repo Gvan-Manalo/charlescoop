@@ -33,6 +33,7 @@ class superadminController extends Controller
             if($user->code!=0){
             $code = $user->code;
             $email = $user->email;
+            
             EmailOtp::create([
                 'user_email'=> $email,
                 'code' => $code

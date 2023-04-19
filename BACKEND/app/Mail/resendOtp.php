@@ -9,12 +9,12 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class MailOtp extends Mailable
+class resendOtp extends Mailable
 {
     use Queueable, SerializesModels;
  public $code;
  public $email;
- public $name;
+
     /**
      * Create a new message instance.
      *
@@ -42,7 +42,7 @@ class MailOtp extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Mail Otp',
+            subject: 'Resend Otp',
         );
     }
 
@@ -54,7 +54,7 @@ class MailOtp extends Mailable
     public function content()
     {
         return new Content(
-            markdown: 'mail.mail-otp',
+            markdown: 'mail.resend-mail',
         );
     }
 

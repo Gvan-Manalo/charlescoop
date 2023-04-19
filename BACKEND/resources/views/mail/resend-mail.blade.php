@@ -1,7 +1,7 @@
 <x-mail::message>
 # EMAIL VERIFICATION
 
-OTP here
+resend OTP here
 
 # {{ $code }}
 

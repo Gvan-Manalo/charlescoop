@@ -90,7 +90,7 @@ export class LoginComponent implements OnInit, OnDestroy  {
 
   handleResponse(user:any){
     console.log(user.access_token);
-    localStorage.setItem('userData', JSON.stringify(user.user))
+    localStorage.setItem('userData', JSON.stringify(user.user['id']))
     this.token.handle(user.access_token);
     this.Auth.changeStatus(true);
 
@@ -98,7 +98,7 @@ export class LoginComponent implements OnInit, OnDestroy  {
     if(user.user['role_id']==1){
        //otpinput
       if(user.user['code']!=0){
-        this.route.navigateByUrl('admin/admin-home');//code not input
+        this.route.navigateByUrl('verify-account');//code not input
       }
       else if(user.user['code']==0){
         //verified
