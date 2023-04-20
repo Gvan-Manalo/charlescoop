@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { slider, slideright} from '../../animation';
+import { slider, slideright} from '../animation';
 import {FormBuilder, FormControl, FormGroup, Validators, AbstractControl} from '@angular/forms';
-import { passwordMatch } from '../../validators/passwordMatch';
+import { passwordMatch } from '../validators/passwordMatch';
 
 
 @Component({

@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
-import { VerifyAccountComponent } from './admin/verify-account/verify-account.component';
+import { VerifyAccountComponent } from './verify-account/verify-account.component';
 import { CheckEmailComponent } from './check-email/check-email.component';
 import { ChangePassComponent } from './change-pass/change-pass.component';
 import { PassDoneComponent } from './pass-done/pass-done.component';
@@ -25,10 +25,10 @@ import { SuperAdminComponent } from './super-admin/super-admin.component';
 import { LoggedInService } from './services/logged-in.service';
 import { NotLoggedInService } from './services/not-logged-in.service';
 import { SadminBodyComponent } from './super-admin/sadmin-body/sadmin-body.component';
-import { DisableAccountComponent } from './admin/disable-account/disable-account.component';
-import { NotVerifiedComponent } from './admin/not-verified/not-verified.component';
-import { SadminChpassComponent } from './super-admin/sadmin-chpass/sadmin-chpass.component';
-import { SadminPassdoneComponent } from './super-admin/sadmin-passdone/sadmin-passdone.component';
+import { DisableAccountComponent } from './disable-account/disable-account.component';
+import { NotVerifiedComponent } from './not-verified/not-verified.component';
+import { SadminChpassComponent } from './sadmin-chpass/sadmin-chpass.component';
+import { SadminPassdoneComponent } from './sadmin-passdone/sadmin-passdone.component';
 
 const routes: Routes = [
   {
@@ -65,6 +65,26 @@ const routes: Routes = [
     component: PassDoneComponent,
   },
   {
+    path: 'verify-account', 
+    component: VerifyAccountComponent
+  },
+  {
+    path: 'not-verified', 
+    component: NotVerifiedComponent
+  },
+  {
+    path: 'disable-account', 
+    component: DisableAccountComponent
+  },
+  {
+    path: 'sadmin-chpass', 
+    component: SadminChpassComponent
+  },
+  {
+    path: 'sadmin-passdone', 
+    component: SadminPassdoneComponent
+  },
+  {
     path: 'admin',
     component: AdminComponent,
     canActivate : [LoggedInService],
@@ -78,9 +98,6 @@ const routes: Routes = [
       {path: 'members/add-members', component: AddMembersComponent},
       {path: 'members/add-payment', component: AddPaymentComponent},
       {path: 'inventory', component: InventoryComponent},
-      {path: 'verify-account', component: VerifyAccountComponent},
-      {path: 'not-verified', component: NotVerifiedComponent},
-      {path: 'disable-account', component: DisableAccountComponent},
       {path: 'body', component: BodyComponent},
     ]
   },
@@ -93,8 +110,7 @@ const routes: Routes = [
       {path: 'sadmin-home', component: SadminHomeComponent},
       {path: 'activity-logs', component: ActivityLogsComponent},
       {path: 'sadmin-settings', component: SadminSettingsComponent},
-      {path: 'sadmin-chpass', component: SadminChpassComponent},
-      {path: 'sadmin-passdone', component: SadminPassdoneComponent},
+      
       {path: 'sadmin-body', component: SadminBodyComponent},
     ]
   },
