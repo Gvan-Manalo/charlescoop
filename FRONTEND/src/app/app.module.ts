@@ -21,21 +21,21 @@ import { ActivityLogsComponent } from './super-admin/activity-logs/activity-logs
 import { SadminSettingsComponent } from './super-admin/sadmin-settings/sadmin-settings.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { VerifyAccountComponent } from './verify-account/verify-account.component';
+import { VerifyAccountComponent } from './admin/verify-account/verify-account.component';
 import { ForgotPassComponent } from './forgot-pass/forgot-pass.component';
 import { CheckEmailComponent } from './check-email/check-email.component';
 import { ChangePassComponent } from './change-pass/change-pass.component';
 import { PassDoneComponent } from './pass-done/pass-done.component';
-import { SadminChpassComponent } from './sadmin-chpass/sadmin-chpass.component';
-import { SadminPassdoneComponent } from './sadmin-passdone/sadmin-passdone.component';
+import { SadminChpassComponent } from './super-admin/sadmin-chpass/sadmin-chpass.component';
+import { SadminPassdoneComponent } from './super-admin/sadmin-passdone/sadmin-passdone.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StrengthMeterModule } from "ngx-strength-meter";
 import { HttpClientModule } from '@angular/common/http';
 import { PrivateComponent } from './private/private/private.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import { NotVerifiedComponent } from './not-verified/not-verified.component';
-import { DisableAccountComponent } from './disable-account/disable-account.component';
+import { NotVerifiedComponent } from './admin/not-verified/not-verified.component';
+import { DisableAccountComponent } from './admin/disable-account/disable-account.component';
 import { SadminBodyComponent } from './super-admin/sadmin-body/sadmin-body.component';
 
 @NgModule({

@@ -1,16 +1,16 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { slider, slideright} from '../animation';
-import { AuthGuardService } from '../services/auth-guard.service';
+import { slider, slideright} from '../../animation';
+import { AuthGuardService } from '../../services/auth-guard.service';
 
 @Component({
-  selector: 'app-disable-account',
-  templateUrl: './disable-account.component.html',
-  styleUrls: ['./disable-account.component.scss'],
+  selector: 'app-not-verified',
+  templateUrl: './not-verified.component.html',
+  styleUrls: ['./not-verified.component.scss'],
   animations:[slideright, slider],
   encapsulation: ViewEncapsulation.Emulated,
 })
-export class DisableAccountComponent implements OnInit, OnDestroy {
+export class NotVerifiedComponent implements OnInit, OnDestroy {
 
   isDisplayed: boolean = true;
   toggleDiv(){
@@ -31,4 +31,6 @@ export class DisableAccountComponent implements OnInit, OnDestroy {
     this.auth.changeStatus(false);
     localStorage.clear();
    }
+    
+
 }

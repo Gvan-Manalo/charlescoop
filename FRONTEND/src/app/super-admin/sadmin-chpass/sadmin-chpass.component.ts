@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { slider, slideright} from '../animation';
+import { slider, slideright} from '../../animation';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
