@@ -1,7 +1,9 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { slider, slideright} from '../../animation';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators, AbstractControl} from '@angular/forms';
+import { passwordMatch } from '../../validators/passwordMatch';
+
 
 @Component({
   selector: 'app-sadmin-chpass',
@@ -32,13 +34,35 @@ export class SadminChpassComponent implements OnInit, OnDestroy {
     this.cvisible = !this.cvisible
     this.cchangetype = !this.cchangetype
   }
+
+  
+  submitted:boolean = false;
   constructor(@Inject(DOCUMENT) private _document: any, private fb: FormBuilder){}
 
+  chpassForm = new FormGroup({
+
+    password : new FormControl("", [Validators.required]),
+
+    confirm_pass : new FormControl("", [Validators.required]),
+
+
+  }, [ passwordMatch("password", "confirm_pass") ])
+
+  getControl(name: any): AbstractControl | null{
+    return this.chpassForm.get(name)
+  }
+  onSubmit(){
+    this.submitted = true;
+    if(this.chpassForm.invalid){
+      return;
+    }
+  }
   ngOnInit(): void {
     this._document.body.classList.add('body');
-    this.form = this.fb.group({
+
+    /*this.form = this.fb.group({
       password: ['', Validators.required],
-    });
+    });*/
   }
 
   ngOnDestroy() {

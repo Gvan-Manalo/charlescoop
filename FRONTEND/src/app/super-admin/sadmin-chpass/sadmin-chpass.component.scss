@@ -135,12 +135,12 @@ label{
     flex-direction: column;
 }
 
-.meter{
+/*.meter{
   margin-top:3.8em;
   max-width: 500px;
   width: 310px;
 
-}
+}*/
 .eye{
   position: absolute;
   left: 87%;
@@ -163,15 +163,15 @@ label{
     text-align: center;
     display: inline-block;
     width: 100%;
-    height: 41px;
+    height: 43px;
     background-color: #3F0F88;
     color: #fff;
     border: none;
     border-radius: 0.6rem;
-    font-size: .9rem;
-    margin-top: .5rem;
-    margin-bottom: 3rem;
-    padding-top: .5rem;
+    font-size: 1rem;
+
+    margin-bottom: 2rem;
+;
     text-decoration: none;
     
 }
@@ -308,5 +308,25 @@ label{
       padding: 1rem 2rem 1.5rem;
       
     }
+  }
+  /**PASSWORD MATCH*/
+.text-danger{
+    transform: translate(16%, -100%);
+    color: red;
+    font-size: 14px;
+    position: absolute;
+  }
+  
+  .text-danger1{
+    transform: translate(11%, -100%);
+    color: red;
+    font-size: 14px;
+    position: absolute;
+  }
+  
+  .text-danger2{
+    transform: translate(5%, -150%);
+    color: red;
+    font-size: 14px;
   }
   
