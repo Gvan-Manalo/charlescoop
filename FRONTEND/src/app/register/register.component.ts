@@ -6,6 +6,7 @@ import { passwordMatch } from '../validators/passwordMatch';
 import {BackendService} from '../services/backend.service';
 import {TokenService} from '../services/token.service';
 import { Router } from '@angular/router';
+import { AuthGuardService } from '../services/auth-guard.service';
 
 @Component({
   selector: 'app-register',
@@ -44,7 +45,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   submitted:boolean = false;
   
-  constructor(@Inject(DOCUMENT) private _document: any, private backend:BackendService ){}
+  constructor(@Inject(DOCUMENT) private _document: any, private backend:BackendService,
+  private token:TokenService, private route:Router, private Auth:AuthGuardService ){}
 
   registerForm = new FormGroup({
     name : new FormControl("", [Validators.required]),
@@ -79,6 +81,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   public error:any= [];
+  
   public form = {
     name:null,
     email:null,
@@ -88,10 +91,19 @@ export class RegisterComponent implements OnInit, OnDestroy {
   
   submitReg(){
     //console.log(this.form);
-    return this.backend.register(this.form).subscribe(
-      data=>console.log(data)
+    return this.backend.register(this.form).subscribe(     
+      data=>this.handleData(data),
       );
+      
   }
+  handleData(data:any){
+    console.log(data.access_token);
+    localStorage.setItem('userData', JSON.stringify(data.user['id']));
+    this.Auth.changeStatus(true);
+    this.token.handle(data.access_token);
+    this.route.navigateByUrl('admin/verify-account');
+
+}
   handleError(error:any){
     this.error = error.error.error;
   }

@@ -16,7 +16,7 @@ export class LoggedInService {
 
     return this.token.loggedIn();
 
-    this.route.navigateByUrl('admin/admin-home');
+    this.route.navigateByUrl('/admin/admin-home');
 
   }
     

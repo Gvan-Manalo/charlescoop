@@ -18,6 +18,7 @@ constructor(private http: HttpClient){
   Loaded = false;
   updateFormActive = false;
 
+
   id = "";
   name: string = "";
   email: string = "";
@@ -72,8 +73,6 @@ constructor(private http: HttpClient){
        }
     )
   }
-
-
 
 
 }

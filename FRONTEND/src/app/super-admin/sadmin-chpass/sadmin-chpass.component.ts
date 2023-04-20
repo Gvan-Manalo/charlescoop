@@ -48,6 +48,13 @@ export class SadminChpassComponent implements OnInit, OnDestroy {
   onStrengthChange(score: any) {
     console.log('new score', score);
   }
+  public chform = {
+    password:null,
+   confirm_pass:null
+  }
 
+  submitCh(){
+    
+  }
 
 }

@@ -53,8 +53,12 @@ export class VerifyAccountComponent implements OnInit, OnDestroy{
       this.http.post('http://127.0.0.1:8000/api/users/updateOtp' + '/' + this.id, body).subscribe(
        (res:any)=>{
         console.log(res);
-        if(res.code==0){
-         this.route.navigateByUrl('admin/admin-home');
+        if(res.status==2){
+         this.route.navigateByUrl('not-verified');
+        }else if(res.status==1){
+          this.route.navigateByUrl('disable-account');
+        }else if(res.status==1){
+          this.route.navigateByUrl('admin/admin-home');
         }
        }
       )

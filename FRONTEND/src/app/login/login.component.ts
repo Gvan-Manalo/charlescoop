@@ -98,25 +98,30 @@ export class LoginComponent implements OnInit, OnDestroy  {
     if(user.user['role_id']==1){
        //otpinput
       if(user.user['code']!=0){
-        this.route.navigateByUrl('verify-account');//code not input
+        this.route.navigateByUrl('admin/verify-account');//code not yet input
       }
       else if(user.user['code']==0){
         //verified
           if(user.user['status']==2){
-            this.route.navigateByUrl('not-verified');//not verified
+            this.route.navigateByUrl('admin/not-verified');//not verified
           }
           else if(user.user['status']==1){
             this.route.navigateByUrl('admin/admin-home');//verified
           } 
           else if(user.user['status']==0){
-            this.route.navigateByUrl('disable-account');//disabled
+            this.route.navigateByUrl('admin/disable-account');//disabled
           }
       }
 
     }
     //superadmin
     else if(user.user['role_id']==2){
-      this.route.navigateByUrl('super-admin/sadmin-home');
+      if(user.user['code']!=0){
+        this.route.navigateByUrl('super-admin/sadmin-chpass');
+      }else{
+        this.route.navigateByUrl('super-admin/sadmin-home');
+      }
+     
     }
    
  
