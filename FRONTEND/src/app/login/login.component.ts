@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { AuthGuardService } from '../services/auth-guard.service';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -42,7 +43,8 @@ export class LoginComponent implements OnInit, OnDestroy  {
 
   constructor(@Inject(DOCUMENT) private _document: any , private backend:BackendService,
    private token:TokenService, private route:Router , private Auth:AuthGuardService ){
-
+    localStorage.clear();
+    sessionStorage.clear();
    }
 
 
@@ -91,13 +93,14 @@ export class LoginComponent implements OnInit, OnDestroy  {
   handleResponse(user:any){
     console.log(user.access_token);
     localStorage.setItem('userData', JSON.stringify(user.user['id']))
-    this.token.handle(user.access_token);
-    this.Auth.changeStatus(true);
+    localStorage.setItem('userRole', JSON.stringify(user.user['role_id']))
 
     //admin
     if(user.user['role_id']==1){
        //otpinput
       if(user.user['code']!=0){
+        sessionStorage.setItem('email', user.user['email'])
+        this.token.ftoken(user.access_token);
         this.route.navigateByUrl('verify-account');//code not yet input
       }
       else if(user.user['code']==0){
@@ -106,7 +109,9 @@ export class LoginComponent implements OnInit, OnDestroy  {
             this.route.navigateByUrl('not-verified');//not verified
           }
           else if(user.user['status']==1){
-            this.route.navigateByUrl('admin/admin-home');//verified
+            this.token.handle(user.access_token);
+            this.Auth.changeStatus(true);
+            this.route.navigateByUrl('admin/admin-home');//verified  
           } 
           else if(user.user['status']==0){
             this.route.navigateByUrl('disable-account');//disabled
@@ -117,8 +122,10 @@ export class LoginComponent implements OnInit, OnDestroy  {
     //superadmin
     else if(user.user['role_id']==2){
       if(user.user['code']!=0){
+        this.token.ftoken(user.access_token);
         this.route.navigateByUrl('sadmin-chpass');
       }else{
+        this.token.handle(user.access_token);
         this.route.navigateByUrl('super-admin/sadmin-home');
       }
      

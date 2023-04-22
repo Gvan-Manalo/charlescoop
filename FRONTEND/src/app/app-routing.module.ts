@@ -29,6 +29,8 @@ import { DisableAccountComponent } from './disable-account/disable-account.compo
 import { NotVerifiedComponent } from './not-verified/not-verified.component';
 import { SadminChpassComponent } from './sadmin-chpass/sadmin-chpass.component';
 import { SadminPassdoneComponent } from './sadmin-passdone/sadmin-passdone.component';
+import { AdminOnlyService } from './services/admin-only.service';
+import { SuperadminOnlyService } from './services/superadmin-only.service';
 
 const routes: Routes = [
   {
@@ -87,7 +89,7 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate : [LoggedInService],
+    canActivate : [LoggedInService , AdminOnlyService],
     children : [
       {path: '', redirectTo: 'admin-home', pathMatch: 'full'},
       {path: 'admin-home', component: AdminHomeComponent},
@@ -104,7 +106,7 @@ const routes: Routes = [
   {
     path: 'super-admin',
     component: SuperAdminComponent,
-    canActivate : [LoggedInService],
+    canActivate : [LoggedInService, SuperadminOnlyService],
     children : [
       {path: '', redirectTo: 'sadmin-home', pathMatch: 'full'},
       {path: 'sadmin-home', component: SadminHomeComponent},

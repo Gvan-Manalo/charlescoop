@@ -3,6 +3,10 @@ import { DOCUMENT } from '@angular/common';
 import { slider, slideright} from '../animation';
 import {FormBuilder, FormControl, FormGroup, Validators, AbstractControl} from '@angular/forms';
 import { passwordMatch } from '../validators/passwordMatch';
+import { BackendService } from '../services/backend.service';
+import {  Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { TokenService } from '../services/token.service';
 
 
 @Component({
@@ -37,7 +41,8 @@ export class SadminChpassComponent implements OnInit, OnDestroy {
 
   
   submitted:boolean = false;
-  constructor(@Inject(DOCUMENT) private _document: any, private fb: FormBuilder){}
+  constructor(@Inject(DOCUMENT) private _document: any, private fb: FormBuilder, private http:HttpClient, 
+  private backend:BackendService, private route:Router, private token:TokenService){}
 
   chpassForm = new FormGroup({
 
@@ -72,13 +77,26 @@ export class SadminChpassComponent implements OnInit, OnDestroy {
   onStrengthChange(score: any) {
     console.log('new score', score);
   }
+
+  id = localStorage.getItem('userData');
   public chform = {
+    id : null,
     password:null,
    confirm_pass:null
   }
 
-  submitCh(){
+
+
+  submitPass(){
+    this.http.post('http://127.0.0.1:8000/api/users/superChange' + '/' + this.id, this.chform).subscribe(
+      (res:any)=>{
+        console.log(res.id)
+        this.token.handle(sessionStorage.getItem('ftoken'));
+        this.route.navigateByUrl('super-admin/sadmin-home');
+  });
     
   }
+
+
 
 }

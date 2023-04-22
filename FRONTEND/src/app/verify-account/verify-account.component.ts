@@ -3,6 +3,9 @@ import { DOCUMENT } from '@angular/common';
 import { BackendService } from '../services/backend.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import {TokenService} from '../services/token.service';;
+import { AuthGuardService } from '../services/auth-guard.service';
+
 
 @Component({
   selector: 'app-verify-account',
@@ -12,7 +15,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class VerifyAccountComponent implements OnInit, OnDestroy{
 
-  constructor(@Inject(DOCUMENT) private _document: any, private backend:BackendService, private route:Router, private http:HttpClient
+  constructor(@Inject(DOCUMENT) private _document: any, private token:TokenService, private Auth:AuthGuardService,
+  private backend:BackendService, private route:Router, private http:HttpClient
   ){}
   
     ngOnInit() {
@@ -37,6 +41,8 @@ export class VerifyAccountComponent implements OnInit, OnDestroy{
 
 
     otp:string = "";
+
+    email = sessionStorage.getItem('email');
     getOtp(data:any) {
       this.id = localStorage.getItem('userData'),
      this.otp = (<HTMLInputElement>document.getElementById("otp")).value;
@@ -49,15 +55,17 @@ export class VerifyAccountComponent implements OnInit, OnDestroy{
         'code': this.otp,
         'id' : this.id
       }
+      
       console.log(this.otp)
       this.http.post('http://127.0.0.1:8000/api/users/updateOtp' + '/' + this.id, body).subscribe(
        (res:any)=>{
-        console.log(res);
         if(res.status==2){
          this.route.navigateByUrl('not-verified');
-        }else if(res.status==1){
+        }else if(res.status==0){
           this.route.navigateByUrl('disable-account');
         }else if(res.status==1){
+          this.token.verifyHandle(sessionStorage.getItem('ftoken'));  
+          this.Auth.changeStatus(true);
           this.route.navigateByUrl('admin/admin-home');
         }
        }
@@ -81,5 +89,7 @@ export class VerifyAccountComponent implements OnInit, OnDestroy{
     handleError(error:any){
       this.error = error.error.error;
     }
+
+
 
 }
