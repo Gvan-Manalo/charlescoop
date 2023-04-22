@@ -9,6 +9,9 @@ import { AuthGuardService } from '../services/auth-guard.service';
 
 
 
+
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -93,7 +96,7 @@ export class LoginComponent implements OnInit, OnDestroy  {
   handleResponse(user:any){
     console.log(user.access_token);
     localStorage.setItem('userData', JSON.stringify(user.user['id']))
-    localStorage.setItem('userRole', JSON.stringify(user.user['role_id']))
+   localStorage.setItem('userRole', JSON.stringify(user.user['role_id']))
 
     //admin
     if(user.user['role_id']==1){

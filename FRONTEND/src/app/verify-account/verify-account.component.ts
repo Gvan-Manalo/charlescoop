@@ -44,7 +44,7 @@ export class VerifyAccountComponent implements OnInit, OnDestroy{
 
     email = sessionStorage.getItem('email');
     getOtp(data:any) {
-      this.id = localStorage.getItem('userData'),
+      this.id = sessionStorage.getItem('userData'),
      this.otp = (<HTMLInputElement>document.getElementById("otp")).value;
       this.updateData();
     }
